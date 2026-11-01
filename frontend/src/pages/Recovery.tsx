@@ -102,7 +102,7 @@ export const Recovery = ({ onBack, onComplete, scanID, selectedFiles }: Recovery
 
   const handleDownloadLog = () => {
     const logContent = `
-Digler Recovery Report
+FileRecova Recovery Report
 Generated: ${new Date().toLocaleString()}
 
 Recovery Summary:
@@ -119,7 +119,7 @@ ${selectedFiles.map(file => `- ${file.name} (${file.size}) - ${file.status}`).jo
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'digler_recovery_report.txt';
+    a.download = 'filerecova_recovery_report.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

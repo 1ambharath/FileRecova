@@ -1,9 +1,9 @@
 <p align="center">
-<img alt="FileRecova Logo" src="assets/logo.png" width="280px">
+<img alt="FileRecova Logo" src="assets/logo.png" width="560px">
 </p>
 
 <h1 align="center">FileRecova</h1>
-<h3 align="center">Deep Forensic Disk Analysis & File Recovery GUI for Windows 11</h3>
+<h3 align="center">Forensic Disk Analysis & Deep File Recovery Suite for Windows 11</h3>
 
 <p align="center">
   <a href="https://github.com/1ambharath/FileRecova/actions/workflows/build.yml">
@@ -17,24 +17,24 @@
 
 ---
 
-## 📌 Attribution & Project Lineage
+## 📌 Attribution & Origin
 
 > [!NOTE]  
-> **FileRecova** is forked from [**ostafen/digler**](https://github.com/ostafen/digler), an exceptional open-source forensic carving and disk recovery tool created by **Stefano Scafiti** ([@ostafen](https://github.com/ostafen)).
+> **FileRecova** is forked from [**ostafen/digler**](https://github.com/ostafen/digler), an open-source disk recovery engine created by **Stefano Scafiti** ([@ostafen](https://github.com/ostafen)).
 >
-> All original core carving algorithms, DFXML reporting mechanics, and device scanner architecture are credited to Stefano Scafiti under the **MIT License**. We express immense gratitude to the author for laying the foundation of this project.
+> All original core carving algorithms, DFXML reporting mechanics, and device scanner architecture are credited to Stefano Scafiti under the **MIT License**. We express sincere appreciation to the original author for creating the forensic engine that powers the underlying recovery algorithms.
 
 ---
 
 ## 🚀 Enhancements in FileRecova
 
-While the upstream `digler` project established a powerful CLI engine, desktop GUI builds for Windows were either unreleased or failed to compile due to path misconfigurations. **FileRecova** bridges this gap and brings a complete, polished Windows 11 desktop experience:
+**FileRecova** transforms the underlying forensic carving engine into a full-featured, modern Windows 11 desktop application with an intuitive graphical interface, automated build pipeline, and dedicated release distribution:
 
 1. **Standalone Windows 11 GUI Executable (`FileRecovaGUI.exe`):**
-   - Packaged as a single, self-contained `.exe` (~10.5 MB).
-   - Powered by **Wails v2** and utilizes the built-in **Microsoft Edge WebView2** runtime (no bloated Electron dependencies required).
+   - Packaged as a single, self-contained desktop `.exe` (~10.5 MB).
+   - Powered by **Wails v2** and built on top of the native **Microsoft Edge WebView2** runtime (no external frameworks or bloated Electron runtimes required).
 2. **Fixed Desktop Pipeline:**
-   - Corrected entry point paths in `wails.json` and resolved Vite asset embedding issues.
+   - Corrected entry point paths and resolved asset embedding configurations for seamless packaging.
    - Suppressed unwanted command prompt / console popups on launch using the Windows GUI subsystem flag (`-ldflags "-H windowsgui"`).
 3. **Optimized Binary Size:**
    - Stripped debug symbols (`-s -w`), reducing the GUI binary size from ~15.5 MB down to ~10.5 MB.
@@ -126,6 +126,6 @@ The compiled binaries will be output into the `bin/` directory:
 
 ## ⚖️ License & Credits
 
-* Original Project: [ostafen/digler](https://github.com/ostafen/digler) by **Stefano Scafiti**
-* Enhancements & Windows GUI Pipeline: [FileRecova](https://github.com/1ambharath/FileRecova) by **Bharath**
+* Original Engine: [ostafen/digler](https://github.com/ostafen/digler) by **Stefano Scafiti**
+* Windows GUI & Enhancements: [FileRecova](https://github.com/1ambharath/FileRecova) by **Bharath**
 * Licensed under the **[MIT License](LICENSE)**.

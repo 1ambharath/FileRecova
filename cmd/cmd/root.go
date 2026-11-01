@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Stefano Scafiti
+// Copyright (c) 2025 Stefano Scafiti / Bharath (FileRecova)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const AppName = "diglet"
+const AppName = "filerecova"
 
 func Execute() error {
 	rootCmd := &cobra.Command{

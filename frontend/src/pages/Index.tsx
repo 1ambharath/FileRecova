@@ -14,10 +14,10 @@ const Index = () => {
           transition={{ delay: 0.2 }}
         >
           <h1 className="mb-4 text-4xl font-bold hero-gradient bg-clip-text text-transparent">
-            Digler is Loading...
+            FileRecova is Starting...
           </h1>
           <p className="text-xl text-muted-foreground">
-            Forensic data recovery interface is starting up
+            Forensic data recovery interface is initializing
           </p>
         </motion.div>
       </div>

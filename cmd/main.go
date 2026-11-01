@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Stefano Scafiti
+// Copyright (c) 2025 Stefano Scafiti / Bharath (FileRecova)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,19 +33,18 @@ func main() {
 }
 
 func PrintLogo() {
-	fmt.Println("    _ _        _          ")
-	fmt.Println("  __| (_) __ _| | ___ _ __")
-	fmt.Println(" / _` | |/ _` | |/ _ \\ '__|")
-	fmt.Println("| (_| | | (_| | |  __/ |   ")
-	fmt.Println(" \\__,_|_|\\__, |_|\\___|_|   ")
-	fmt.Println("          |___/           ")
+	fmt.Println("  ______ _ _       _____                             ")
+	fmt.Println(" |  ____(_) |     |  __ \\                            ")
+	fmt.Println(" | |__   _| | ___ | |__) |___  ___ _____   ____ _    ")
+	fmt.Println(" |  __| | | |/ _ \\|  _  // _ \\/ __/ _ \\ \\ / / _` |   ")
+	fmt.Println(" | |    | | |  __/| | \\ \\  __/ (_| (_) \\ V / (_| |   ")
+	fmt.Println(" |_|    |_|_|\\___||_|  \\_\\___|\\___\\___/ \\_/ \\__,_|   ")
 	fmt.Println()
-	fmt.Println("Disk analysis and recovery tool")
+	fmt.Println("FileRecova: Deep Forensic Disk Analysis & File Recovery Tool")
+	fmt.Println("Forked from open-source recovery engine by Stefano Scafiti (MIT License)")
 	fmt.Println()
-	fmt.Printf("Version:   %s\n", env.Version)
-	fmt.Printf("Commit:    %s\n", env.CommitHash)
+	fmt.Printf("Version:    %s\n", env.Version)
+	fmt.Printf("Commit:     %s\n", env.CommitHash)
 	fmt.Printf("Build Time: %s\n", env.BuildTime)
-	fmt.Println(" ")
-	fmt.Println("© 2025 Stefano Scafiti. Licensed under MIT License.")
 	fmt.Println(" ")
 }
