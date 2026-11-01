@@ -1,198 +1,131 @@
 <p align="center">
-<img alt="Digler Logo" src="assets/logo.png" width="300px">
-</p>
-<h2 align="center">Digler - Go Deep. Get Back Your Data</h2>
-
-<p align="center">
-  ⚠️ <strong>Note:</strong> Digler is in early development (<a href="https://github.com/ostafen/digler/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer">v0.1.0</a>). Some bugs may exist. Please report issues!
+<img alt="FileRecova Logo" src="assets/logo.png" width="280px">
 </p>
 
+<h1 align="center">FileRecova</h1>
+<h3 align="center">Deep Forensic Disk Analysis & File Recovery GUI for Windows 11</h3>
+
 <p align="center">
-  <a href="https://github.com/ostafen/digler/actions/workflows/build.yml">
-    <img src="https://github.com/ostafen/digler/actions/workflows/build.yml/badge.svg" alt="Build Status">
+  <a href="https://github.com/1ambharath/FileRecova/actions/workflows/build.yml">
+    <img src="https://github.com/1ambharath/FileRecova/actions/workflows/build.yml/badge.svg" alt="Build Status">
   </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License">
+  </a>
+  <img src="https://img.shields.io/badge/platform-Windows%2011%20%7C%20Linux%20%7C%20macOS-lightgrey" alt="Platform">
 </p>
 
-<p align="center">
-  <img alt="Digler Demo" src="assets/demo.gif" width="500px">
-</p>
-
-## Why Digler?
-
-While many data recovery tools exist, few offer the combination of simplicity, flexibility, and modern design with deep disk analysis and effective file carving.
-
-Digler was created to fill this gap by providing a streamlined, plugin-extensible tool for data recovery that’s both powerful and easy to use. It offers both a **command-line interface and a user-friendly desktop application**, making it accessible for professionals and casual users alike. Whether you prefer the speed and scriptability of the CLI or the convenience of a visual interface, Digler adapts to your workflow without the complexity of heavyweight GUIs or fragmented tools.
-
-Built in Go, Digler leverages the language’s strengths in performance, cross-platform support, and maintainability to deliver a fast and dependable solution for today’s data recovery challenges.
-
-
-## Features
-
-* **Broad Disk Image and Raw Device Support**: Analyze a wide array of disk image formats (`.dd`, `.img`, etc...) or directly access physical disks.
-
-* **File System Agnostic Analysis**: Recover deleted files regardless of the underlying file system (e.g., NTFS, FAT32, ext4), even when metadata is lost.
-
-* **Plugin-Based Extensibility**: Support for custom file scanners through plugins, simplifying integration with new file formats.
-
-* **Reporting Capabilities**: Generate detailed reports, compliant with the `Digital Forensics XML (DFXML)` format, of recovered data and analysis findings.
-
-* **Post-Scan Data Recovery**: Utilize the generated DFXML reports to precisely recover specific files.
-
-* **Dual Interface Options**: Use Digler through a fast, intuitive command-line interface or a modern desktop application—choose the interface that best fits your workflow.
 ---
 
-## Installation
+## 📌 Attribution & Project Lineage
 
-**From Source:**
+> [!NOTE]  
+> **FileRecova** is forked from [**ostafen/digler**](https://github.com/ostafen/digler), an exceptional open-source forensic carving and disk recovery tool created by **Stefano Scafiti** ([@ostafen](https://github.com/ostafen)).
+>
+> All original core carving algorithms, DFXML reporting mechanics, and device scanner architecture are credited to Stefano Scafiti under the **MIT License**. We express immense gratitude to the author for laying the foundation of this project.
 
-```bash
-git clone https://github.com/ostafen/digler.git
-cd digler
-make build
-```
+---
 
-**From Precompiled Binaries:**
+## 🚀 Enhancements in FileRecova
 
-Precompiled binaries are available for Linux, macOS, and Windows on the [Releases page](https://github.com/ostafen/digler/releases).
+While the upstream `digler` project established a powerful CLI engine, desktop GUI builds for Windows were either unreleased or failed to compile due to path misconfigurations. **FileRecova** bridges this gap and brings a complete, polished Windows 11 desktop experience:
 
-## CLI Usage
+1. **Standalone Windows 11 GUI Executable (`FileRecovaGUI.exe`):**
+   - Packaged as a single, self-contained `.exe` (~10.5 MB).
+   - Powered by **Wails v2** and utilizes the built-in **Microsoft Edge WebView2** runtime (no bloated Electron dependencies required).
+2. **Fixed Desktop Pipeline:**
+   - Corrected entry point paths in `wails.json` and resolved Vite asset embedding issues.
+   - Suppressed unwanted command prompt / console popups on launch using the Windows GUI subsystem flag (`-ldflags "-H windowsgui"`).
+3. **Optimized Binary Size:**
+   - Stripped debug symbols (`-s -w`), reducing the GUI binary size from ~15.5 MB down to ~10.5 MB.
+4. **Native Windows Build Automation:**
+   - Added `build-windows.ps1` for 1-click end-to-end building (node bundling + asset embedding + binary linking).
+5. **Windows CI/CD Release Automation:**
+   - Added Windows 11 GitHub Actions workflows to automatically build and attach GUI and CLI executables to GitHub Releases.
+6. **Detailed Windows Forensic Guidance:**
+   - Comprehensive instructions covering Windows User Account Control (UAC) and raw drive access (`\\.\PhysicalDriveX`).
 
-Digler follows a simple but powerful workflow: **scan first, recover later**. This approach lets you analyze disks or images thoroughly before extracting any files.
+---
 
-### 1. Scan a Disk Image or Device
-```bash
-foo@bar$ digler scan <image_or_device>
-```
+## 🔍 Features
 
-Example:
+* **File-System Agnostic Recovery:** Recovers deleted or lost files directly from raw disk sectors even when filesystem metadata (NTFS, FAT32, exFAT, ext4) is wiped or corrupted.
+* **Modern Windows 11 Desktop GUI:** Sleek dark-mode interface built with React 18, TypeScript, TailwindCSS, and Shadcn/UI.
+* **Extensible Carving Plugins:** Modular file signature scanners supporting common formats (PNG, JPEG, PDF, MP3, ZIP, etc.).
+* **DFXML Forensic Standards:** Generates machine-readable Digital Forensics XML (`.dfxml`) audit reports for compliance and auditing.
+* **Dual Interface Options:** Choose between the visual desktop GUI for interactive recovery or the CLI for scripting and automation.
+* **Virtual Filesystem Mount (Linux):** Mount forensic scan reports directly as a read-only FUSE filesystem without extracting data.
 
-###
-```bash
-foo@bar$ digler scan dfrws-2006-challenge.raw
-```
+---
 
-or, to scan an entire disk partition:
+## 📦 Download Precompiled Binaries
 
-###
-```bash
-foo@bar$ digler scan /dev/nvme0n1 # or C: on Windows
-```
-By default, the command generates a detailed DFXML report describing the findings, together with a detailed execution log. However, you can optionally specify a dump directory to to recover files immediately during scanning.
+Download the latest standalone executables directly from the [**Releases**](https://github.com/1ambharath/FileRecova/releases) page:
 
-```bash
-foo@bar$ --dump <path/to/dump/dir>
-```
+* **`FileRecovaGUI.exe`** — Native Windows 11 Desktop GUI application (no installation required).
+* **`FileRecovaCLI.exe`** — Lightweight terminal tool for forensic analysis.
 
-### 2. Mount Scan Results as a Filesystem (Linux only)
-```bash
-foo@bar$ digler mount <image_or_device> <report_file.xml> --mountpoint /path/to/mnt
-```
+---
 
-Example:
+## 💻 How to Run on Windows 11
 
-```bash
-digler mount dfrws-2006-challenge.raw report.xml --mountpoint /mnt/recover
-```
+### 1. Recovering from Disk Image Files (`.dd`, `.img`, `.raw`, `.vhd`)
+If you are analyzing a disk image file:
+- Simply **double-click `FileRecovaGUI.exe`**.
+- Drag or browse to your image file, choose the file signatures you want to carve, and start the scan.
 
-This mounts a FUSE filesystem allowing you to browse and access recovered files directly from the scan report, without copying anything yet.
+### 2. Recovering from Physical Drives & Raw Partitions
+Accessing raw storage sectors (`\\.\PhysicalDrive0`, `C:`, etc.) on Windows requires low-level disk permissions:
+- **Right-click `FileRecovaGUI.exe`** → Select **"Run as Administrator"**.
+- Select the physical drive from the detected disk devices list.
 
-### 3. Recover Files Based on Scan Report
-```bash
-foo@bar$ digler recover <image_or_device> <report_file.xml> --dir /path/to/dir
-```
+---
 
-Example:
-
-```bash
-foo@bar$ digler recover dfrws-2006-challenge.raw report.xml --dir ./recover
-```
-
-### Test Datasets
-
-To help you get started with real-world testing and evaluation, here are some publicly available disk image datasets commonly used in digital forensics research:
-
-- **DFRWS Forensic Challenge Images**
-  [DFRWS 2006 Challenge](https://www.dropbox.com/scl/fi/il7qier2mg7azy13znmvc/dfrws-2006-challenge.zip?rlkey=iueltr1kelpcbdhctnabt2gfn&e=1&dl=0) — a classic forensic image used for recovery challenges and benchmarking.
-
-- **Digital Corpora**
-  [Digital Corpora Repository](https://digitalcorpora.org/) — a rich collection of forensic datasets including disk images, memory dumps, and more.
-
-- **National Institute of Standards and Technology (NIST) Datasets**
-  [NIST Computer Forensics Reference Data Sets (CFReDS)](https://www.cfreds.nist.gov/) — a wide variety of forensic datasets for research and tool evaluation.
-
-You can download these images and use Digler’s `scan` and `recover` commands to experiment and validate your setup.
-
-
-### Supported File Types
-
-Even in its early stages, Digler is already capable of recovering a wide range of file types, including documents, images, audio, and archives.
-
-To see the complete list of supported formats, run:
+## 🛠️ CLI Usage
 
 ```bash
-foo@bar$ digler formats
+# 1. List supported file formats
+FileRecovaCLI.exe formats
+
+# 2. Scan a disk image and generate a DFXML forensic report
+FileRecovaCLI.exe scan disk.img --dfxml report.xml
+
+# 3. Scan a raw physical disk partition (Run terminal as Administrator)
+FileRecovaCLI.exe scan C: --dump C:\recovered_files
+
+# 4. Recover specific files from a pre-scanned DFXML report
+FileRecovaCLI.exe recover disk.img --report report.xml --output recovered/
 ```
 
-## Adding Custom Scanners via Plugins
+---
 
-Digler supports a plugin architecture that allows you to extend the tool with custom file scanners. This makes it easy to add support for new file formats or specialized carving logic without modifying the core code.
+## 🏗️ Building from Source on Windows 11
 
-### Plugin Interface
-Your plugin must implement the following interface:
+### Prerequisites
+* **Go 1.21+** ([Download Go](https://go.dev/dl/))
+* **Node.js 18+** with `npm` ([Download Node.js](https://nodejs.org/))
+* **WebView2 Runtime** (Preinstalled on Windows 11)
 
-```golang
-type FileScanner interface {
-    Ext() string                  // Returns the file extension this scanner handles
-    Description() string          // A brief description of the file type
-    Signatures() [][]byte         // Byte signatures used to identify the file type
-    ScanFile(r *Reader) (*ScanResult, error) // Logic to scan and recover files from a Reader
-}
+### 1-Click Build
+Clone the repository and run the automated PowerShell build script:
+
+```powershell
+# Clone the repository
+git clone https://github.com/1ambharath/FileRecova.git
+cd FileRecova
+
+# Run the Windows build pipeline
+powershell -ExecutionPolicy Bypass -File .\build-windows.ps1
 ```
 
-When your plugin is ready, place its source file in the plugins/ directory and compile all plugins by running:
+The compiled binaries will be output into the `bin/` directory:
+- `bin\FileRecovaGUI.exe` (Desktop GUI)
+- `bin\FileRecovaCLI.exe` (CLI Utility)
 
-```bash
-foo@bar$ make plugins
-```
+---
 
-This will build your plugin(s) as `.so` files and place them in the **bin/plugins/** folder, ready to be loaded by Digler.
+## ⚖️ License & Credits
 
-To verify that your plugins are correctly loaded, run:
-
-```bash
-foo@bar$ digler formats --plugins ./bin/plugins
-```
-
-This command will lists all supported file formats, including those provided by your custom plugins.
-
-Finally, use the same --plugins flag when scanning to enable your plugins:
-
-```bash
-foo@bar$ digler scan <image_or_device> --plugins ./bin/plugins
-```
-
-## Contributing
-
-Writing a comprehensive file carver is a complex challenge. Each supported file type often requires a format-specific decoder to properly identify, validate, and reconstruct data. This makes the development of Digler both technically demanding and highly modular — the perfect scenario for open source collaboration.
-
-We welcome contributions of all kinds, especially in areas like:
-
-- Implementing new file format decoders
-- Improving existing carving heuristics
-- Optimizing performance
-- Enhancing the CLI interface
-- Writing tests, docs, or usage examples
-
-Whether you're familiar with Go or just interested in digital forensics, your help is appreciated.
-
-### Getting Started
-
-Before you start, **please open an issue** (or pick an existing one) to discuss your idea or planned changes. This helps avoid duplicate work and keeps development aligned.
-
-**Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before getting started.**
-
-Once you're ready, fork the repository and submit your pull request!
-
-## License
-
-Digler is released under the **MIT License**.
+* Original Project: [ostafen/digler](https://github.com/ostafen/digler) by **Stefano Scafiti**
+* Enhancements & Windows GUI Pipeline: [FileRecova](https://github.com/1ambharath/FileRecova) by **Bharath**
+* Licensed under the **[MIT License](LICENSE)**.

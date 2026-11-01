@@ -1,8 +1,8 @@
 {
-    "name": "Digler",
-    "description": "A Wails application",
+    "name": "FileRecova",
+    "description": "FileRecova - Modern Forensic Disk Analysis and File Recovery GUI for Windows",
     "author": {
-        "name": "Stefano Scafiti",
+        "name": "Stefano Scafiti / Bharath (FileRecova fork)",
         "email": "stefano.scafiti96@gmail.com"
     },
     "frontend": {
@@ -11,7 +11,7 @@
         "build": "npm run build",
         "bridge": ""
     },
-    "outputfilename": "digler",
+    "outputfilename": "FileRecovaGUI",
     "wailsjsdir": "frontend/src/",
-    "main": "./cmd/wails"
+    "main": "."
 }

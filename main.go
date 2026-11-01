@@ -37,7 +37,7 @@ import (
 var assets embed.FS
 
 const (
-	AppName    = "Digler"
+	AppName    = "FileRecova"
 	HistoryDir = "scan_history"
 	ConfigFile = "config.json"
 
